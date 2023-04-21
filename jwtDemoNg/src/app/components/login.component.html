@@ -1,0 +1,36 @@
+<form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+    <table>
+        <tr>
+            <td>username: </td>
+            <td><input type="text" formControlName="username"></td>
+        </tr>
+        <tr>
+            <td>password: </td>
+            <td><input type="text" formControlName="password"></td>
+        </tr>
+        <tr>
+            <td>First name:</td>
+            <td><input type="text" formControlName="firstName"></td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><input type="text" formControlName="lastName"></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Register</button></td>
+        </tr>
+    </table>
+</form>
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <tr>
+        <td>username: </td>
+        <td><input type="text" formControlName="username"></td>
+    </tr>
+    <tr>
+        <td>password: </td>
+        <td><input type="text" formControlName="password"></td>
+    </tr>
+    <tr>
+        <td><button type="submit">Login</button></td>
+    </tr>
+</form>
