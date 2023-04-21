@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginData, User, UserData } from '../models/UserData';
-import { Subject, lastValueFrom } from 'rxjs';
+import { BehaviorSubject, Subject, lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   loadUser!: User;
+  userChange = new BehaviorSubject<User|null>(null);
   
 
   register(data: UserData) {

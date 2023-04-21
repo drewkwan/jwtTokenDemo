@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'jwtDemoNg';
   currUser!: User | null;
+  
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -23,15 +24,20 @@ export class AppComponent implements OnInit {
 
     this.currUser = JSON.parse(localStorage.getItem("userData")!);
     if (!this.currUser) {
-      this.router.navigate(['']);
+      this.router.navigate(['/login']);
     }
-
-    const expirationDate = this.currUser!.exp * 1000;
-    if (new Date().getTime()<expirationDate && this.currUser) {
-      this.router.navigate(['/home']);
-    } else {
-      this.logout()
+    
+    try {
+      const expirationDate = this.currUser!.exp * 1000;
+      if (new Date().getTime()<expirationDate && this.currUser) {
+        this.router.navigate(['']);
+      } else {
+        this.logout()
+      }
+    } catch (error) {
+      console.error(error)
     }
+    
   }
 
   logout() {
